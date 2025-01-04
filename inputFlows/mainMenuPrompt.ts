@@ -1,4 +1,4 @@
-export const firstQuestion = [
+export const mainMenuPrompt = [
   {
     label: "Begin Draft",
     value: "BEGIN_DRAFT",

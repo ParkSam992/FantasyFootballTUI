@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { getConfirmInput } from "../prompts/getConfirmInput";
 import { getSelectInput } from "../prompts/getSelectInput";
-import { firstQuestion } from "../promptConstants";
+import { mainMenuPrompt } from "./mainMenuPrompt";
 import { Utilities } from "./utilities/index";
 import { CollectLeagueInfo } from "./leagueInfo";
 import { TradeCalculator } from "./tradeCalculator";
@@ -19,7 +19,7 @@ export async function FantasyFootballTUI() {
 
     direction = await getSelectInput(
       "What would you like to do?",
-      firstQuestion
+      mainMenuPrompt
     );
 
     if (direction === "EXIT") {
@@ -31,16 +31,16 @@ export async function FantasyFootballTUI() {
 
     switch (direction) {
       case "BEGIN_DRAFT":
-        Draft();
+        await Draft();
         break;
       case "TRADE_CALCULATOR":
-        TradeCalculator();
+        await TradeCalculator();
         break;
       case "UTILITIES":
-        Utilities();
+        await Utilities();
         break;
       case "REFRESH_PLAYER_RANKINGS":
-        RefreshPlayerRankings();
+        await RefreshPlayerRankings();
         break;
       case "EXIT":
         console.log("Goodbye");
