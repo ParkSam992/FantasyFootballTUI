@@ -1,15 +1,16 @@
 import { BuildTeamRankingPlayer } from "./buildTeamRankingTable";
 import chalk from "chalk";
-import { GetPlayerRankingsPrompt } from "../../../prompts/getPlayerRankingsPrompt";
+import { GetTeamPlayerRankingsPrompt } from "./getTeamPlayerRankingsPrompt";
+import { League } from "../../../types/league";
 
-export async function PotentialKeepers(leagueInfo: any) {
+export async function PotentialKeepers(leagueInfo: League) {
   console.log("Finding Potential Keepers");
 
   const {
     showOneQBRanking,
     rankings,
     marketLabel,
-  } = await GetPlayerRankingsPrompt(leagueInfo);
+  } = await GetTeamPlayerRankingsPrompt(leagueInfo);
 
   console.log(
     chalk.red.underline(

@@ -4,12 +4,7 @@ import { getSelectInput } from "../../prompts/getSelectInput";
 import { getTextInput } from "../../prompts/getTextInput";
 import { League } from "../../types/league";
 
-export type LeagueInfo = {
-  leagueId: string;
-  userId: string;
-};
-
-export async function CollectLeagueInfo(): Promise<League | undefined> {
+export async function CollectLeagueInfo(): Promise<League> {
   var username = await getTextInput("Enter Sleeper Username");
 
   const leagues = await getUserLeagues(username, "nfl", "2024");
@@ -21,10 +16,14 @@ export async function CollectLeagueInfo(): Promise<League | undefined> {
 
   const selectedLeague = leagues.find((option) => option.leagueId === leagueId);
 
+  if (!selectedLeague) {
+    return { leagueId: "Unknown League" } as League;
+  }
+
   return selectedLeague;
 }
 
-const GetLeagueOptions = (leagues: any): MultiSelectChoice[] => {
+const GetLeagueOptions = (leagues: League[]): MultiSelectChoice[] => {
   return leagues.map((l) => ({
     label: `${l.name} - ${l.season}`,
     value: l.leagueId,

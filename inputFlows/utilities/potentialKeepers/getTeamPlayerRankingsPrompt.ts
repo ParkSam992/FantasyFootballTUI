@@ -1,10 +1,11 @@
-import { getLeagueRosterRankings } from "../fantasyFootballApi/getLeagueRosterRankings";
-import { getMarkets } from "../fantasyFootballApi/getMarkets";
-import { getSelectInput } from "./getSelectInput";
-import { User } from "../types/user";
+import { getLeagueRosterRankings } from "../../../fantasyFootballApi/getLeagueRosterRankings";
+import { getMarkets } from "../../../fantasyFootballApi/getMarkets";
+import { getSelectInput } from "../../../prompts/getSelectInput";
+import { User } from "../../../types/user";
+import { League } from "../../../types/league";
 
-export async function GetPlayerRankingsPrompt(
-  leagueInfo: any
+export async function GetTeamPlayerRankingsPrompt(
+  leagueInfo: League
 ): Promise<{
   showOneQBRanking: boolean;
   rankings: User[];

@@ -1,9 +1,10 @@
 import { getSelectInput } from "../../prompts/getSelectInput";
+import { League } from "../../types/league";
 import { PlayerRankings } from "./playerRankings";
 import { PotentialKeepers } from "./potentialKeepers";
 import { utilityPrompt } from "./utilityPrompts";
 
-export async function Utilities(leagueInfo: any) {
+export async function Utilities(leagueInfo: League) {
   console.log("Displaying Utilities Functions");
 
   let utilityFunction = "UTILITIES";
@@ -19,7 +20,7 @@ export async function Utilities(leagueInfo: any) {
         await PotentialKeepers(leagueInfo);
         break;
       case "PLAYER_RANKINGS":
-        await PlayerRankings();
+        await PlayerRankings(leagueInfo);
         break;
       case "BACK":
         return;
