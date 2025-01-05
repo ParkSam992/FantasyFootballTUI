@@ -19,7 +19,7 @@ export const buildPlayerRankingTable = (
       idx + 1 + pageNumber * 20,
       p.firstName + " " + p.lastName,
       p.position,
-      showOneQBRanking ? p.oneQbRanking : p.twoQbRanking,
+      Number(showOneQBRanking ? p.oneQbRanking : p.twoQbRanking).toFixed(1),
     ]);
   });
 
