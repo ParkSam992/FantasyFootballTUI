@@ -35,9 +35,9 @@ export async function PotentialKeepers(leagueInfo: any) {
   markets.find((m) => m.value === selectedMarket);
   console.log(
     chalk.red.underline(
-      `\n ${showOneQBRanking ? "One Quaterback" : "Superflex"} ${
-        markets.find((m) => m.value === selectedMarket).label
-      } \n`
+      `\n ${showOneQBRanking ? "One Quaterback" : "Superflex"} ${markets.find(
+        (m) => m.value === selectedMarket
+      )?.label ?? "Unknown Market"} \n`
     )
   );
 

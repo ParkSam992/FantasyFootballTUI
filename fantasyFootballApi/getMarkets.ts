@@ -1,8 +1,9 @@
 import axios from "axios";
 const https = require("https");
 import { FantasyFootballUrl } from ".";
+import { MultiSelectChoice } from "../prompts/getMultiSelectChoices";
 
-export async function getMarkets(): Promise<string[]> {
+export async function getMarkets(): Promise<MultiSelectChoice[]> {
   const route = "/getMarkets";
   const url = FantasyFootballUrl + route;
 
