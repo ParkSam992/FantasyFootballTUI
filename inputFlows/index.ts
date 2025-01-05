@@ -15,7 +15,7 @@ export async function FantasyFootballTUI() {
   // TODO: If info is bad, re-collect, or exit
 
   while (direction != "EXIT") {
-    console.log("\n" + chalk.blue(leagueInfo.name + leagueInfo.season));
+    console.log("\n" + chalk.blue(leagueInfo?.name ?? "" + leagueInfo?.season));
 
     direction = await getSelectInput(
       "What would you like to do?",
@@ -37,7 +37,7 @@ export async function FantasyFootballTUI() {
         await TradeCalculator();
         break;
       case "UTILITIES":
-        await Utilities();
+        await Utilities(leagueInfo);
         break;
       case "REFRESH_PLAYER_RANKINGS":
         await RefreshPlayerRankings();

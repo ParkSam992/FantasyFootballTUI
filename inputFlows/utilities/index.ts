@@ -3,7 +3,7 @@ import { PlayerRankings } from "./playerRankings";
 import { PotentialKeepers } from "./potentialKeepers";
 import { utilityPrompt } from "./utilityPrompts";
 
-export async function Utilities() {
+export async function Utilities(leagueInfo: any) {
   console.log("Displaying Utilities Functions");
 
   let utilityFunction = "UTILITIES";
@@ -16,7 +16,7 @@ export async function Utilities() {
 
     switch (utilityFunction) {
       case "POTENTIAL_KEEPERS":
-        await PotentialKeepers();
+        await PotentialKeepers(leagueInfo);
         break;
       case "PLAYER_RANKINGS":
         await PlayerRankings();

@@ -1,14 +1,13 @@
 import axios from "axios";
 const https = require("https");
 import { FantasyFootballUrl } from ".";
-import { League } from "../types/league";
+import { User } from "../types/user";
 
-export async function getUserLeagues(
-  sleeperUsername: string,
-  sport: string,
-  year: string
-): Promise<League[]> {
-  const route = `/getUserLeagues/${sleeperUsername}/${sport}/${year}`;
+export async function getLeagueRosterRankings(
+  leagueId: string,
+  market: string
+): Promise<User[]> {
+  const route = `/getLeagueRosterRankings/${leagueId}?market=${market}`;
   const url = FantasyFootballUrl + route;
 
   const agent = new https.Agent({
@@ -19,7 +18,7 @@ export async function getUserLeagues(
     const resp = await axios.get(url, { httpsAgent: agent });
     return resp.data;
   } catch (err) {
-    console.error("Error fetching user leagues: ", err.message);
+    console.error("Error fetching roster rankings: ", err.message);
     throw err;
   }
 }

@@ -2,13 +2,14 @@ import { getUserLeagues } from "../../fantasyFootballApi/getUserLeagues";
 import { MultiSelectChoice } from "../../prompts/getMultiSelectChoices";
 import { getSelectInput } from "../../prompts/getSelectInput";
 import { getTextInput } from "../../prompts/getTextInput";
+import { League } from "../../types/league";
 
 export type LeagueInfo = {
   leagueId: string;
   userId: string;
 };
 
-export async function CollectLeagueInfo(): Promise<any> {
+export async function CollectLeagueInfo(): Promise<League | undefined> {
   var username = await getTextInput("Enter Sleeper Username");
 
   const leagues = await getUserLeagues(username, "nfl", "2024");
