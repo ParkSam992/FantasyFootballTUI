@@ -1,5 +1,5 @@
 import { getMarkets } from "../../../fantasyFootballApi/getMarkets";
-import { getplayerRankings } from "../../../fantasyFootballApi/getPlayerRankings";
+import { getPlayerRankings } from "../../../fantasyFootballApi/getPlayerRankings";
 import { getSelectInput } from "../../../prompts/getSelectInput";
 import { Player } from "../../../types/player";
 
@@ -18,7 +18,7 @@ export async function GetPlayerRankingsPrompt(): Promise<{
   const marketLabel =
     markets.find((m) => m.value === selectedMarket)?.label ?? "Unknown Market";
 
-  const rankings = await getplayerRankings(selectedMarket);
+  const rankings = await getPlayerRankings(selectedMarket);
 
   const showOneQBRanking =
     (await getSelectInput("Which rankings do you want?", showOneQb)) === "true";

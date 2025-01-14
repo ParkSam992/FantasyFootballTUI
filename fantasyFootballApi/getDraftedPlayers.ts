@@ -2,9 +2,10 @@ import axios from "axios";
 const https = require("https");
 import { FantasyFootballUrl } from ".";
 import { Player } from "../types/player";
+import chalk from "chalk";
 
-export async function getPlayerRankings(market: string): Promise<Player[]> {
-  const route = `/getplayerRankings?market=${market}`;
+export async function getDraftedPlayers(draftId: string): Promise<Player[]> {
+  const route = `/getDraftedPlayers/${draftId}`;
   const url = FantasyFootballUrl + route;
 
   const agent = new https.Agent({
@@ -15,7 +16,7 @@ export async function getPlayerRankings(market: string): Promise<Player[]> {
     const resp = await axios.get(url, { httpsAgent: agent });
     return resp.data;
   } catch (err) {
-    console.error("Error fetching player rankings: ", err.message);
+    console.error("Error fetching drafted players: ", err.message);
     throw err;
   }
 }
