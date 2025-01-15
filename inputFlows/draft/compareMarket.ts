@@ -6,6 +6,7 @@ import { Player } from "../../types/player";
 import { BuildCompareMarketTable } from "./buildTables/buildCompareMarketTable";
 import { compareMarketPrompt, positions } from "./draftPrompts";
 import { getDraftedPlayers } from "../../fantasyFootballApi/getDraftedPlayers";
+import { getMultiSelectChoices } from "../../prompts/getMultiSelectChoices";
 
 export async function CompareMarket(
   sleeperRankings: Player[],
@@ -33,11 +34,17 @@ export async function CompareMarket(
 
     const marketRankings = await getPlayerRankings(selectedMarket);
     const draftedPlayers = await getDraftedPlayers(draftId);
+    const currentPick = draftedPlayers.length + 1;
 
-    const displayPosition = await getSelectInput("Which Position?", positions);
+    const displayPosition = await getMultiSelectChoices(
+      "Which Positions?",
+      positions
+    );
 
-    if (displayPosition == "QB" || displayPosition == "ALL") {
-      console.log(chalk.yellow(`\n Quarterbacks - ${selectedMarketName}\n`));
+    if (displayPosition.includes("QB") || displayPosition.includes("ALL")) {
+      console.log(
+        chalk.yellow.bold(`\n Quarterbacks - ${selectedMarketName}\n`)
+      );
       console.log(
         BuildCompareMarketTable(
           sleeperRankings,
@@ -49,8 +56,12 @@ export async function CompareMarket(
       );
     }
 
-    if (displayPosition == "WR" || displayPosition == "ALL") {
-      console.log(chalk.yellow(`\n Wide Recievcers - ${selectedMarketName}\n`));
+    if (displayPosition.includes("WR") || displayPosition.includes("ALL")) {
+      console.log(
+        chalk.yellow.bold(
+          `\n Wide Recievcers - ${selectedMarketName} - Pick #${currentPick} \n`
+        )
+      );
       console.log(
         BuildCompareMarketTable(
           sleeperRankings,
@@ -62,8 +73,12 @@ export async function CompareMarket(
       );
     }
 
-    if (displayPosition == "RB" || displayPosition == "ALL") {
-      console.log(chalk.yellow(`\n Running Backs - ${selectedMarketName}\n`));
+    if (displayPosition.includes("RB") || displayPosition.includes("ALL")) {
+      console.log(
+        chalk.yellow.bold(
+          `\n Running Backs - ${selectedMarketName} - Pick #${currentPick} \n`
+        )
+      );
       console.log(
         BuildCompareMarketTable(
           sleeperRankings,
@@ -75,8 +90,12 @@ export async function CompareMarket(
       );
     }
 
-    if (displayPosition == "TE" || displayPosition == "ALL") {
-      console.log(chalk.yellow(`\n Tight Ends - ${selectedMarketName}\n`));
+    if (displayPosition.includes("TE") || displayPosition.includes("ALL")) {
+      console.log(
+        chalk.yellow.bold(
+          `\n Tight Ends - ${selectedMarketName} - Pick #${currentPick} \n`
+        )
+      );
       console.log(
         BuildCompareMarketTable(
           sleeperRankings,

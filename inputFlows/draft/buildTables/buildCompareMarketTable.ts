@@ -3,6 +3,7 @@ import { Player } from "../../../types/player";
 import {
   addRanksToPlayers,
   getDifferenceDisplayColor,
+  getRankDisplayColor,
   getTopPlayers,
 } from "./buildTableHelpers";
 
@@ -52,14 +53,19 @@ export const BuildCompareMarketTable = (
       (isOneQBDraft ? p.oneQbRanking : p.twoQbRanking) -
       (isOneQBDraft ? marketPlayer.oneQbRanking : marketPlayer.twoQbRanking);
 
+    const currentPick = playersDrafted.length + 1;
     table.push([
       `${p.firstName} ${p.lastName}`,
-      p.rank,
-      isOneQBDraft ? p.oneQbRanking : p.twoQbRanking,
-      marketPlayer.rank,
-      isOneQBDraft
-        ? Number(marketPlayer.oneQbRanking).toFixed(1)
-        : Number(marketPlayer.twoQbRanking).toFixed(1),
+      getRankDisplayColor(p.rank, currentPick),
+      getRankDisplayColor(
+        isOneQBDraft ? p.oneQbRanking : p.twoQbRanking,
+        currentPick
+      ),
+      getRankDisplayColor(marketPlayer.rank, currentPick),
+      getRankDisplayColor(
+        isOneQBDraft ? marketPlayer.oneQbRanking : marketPlayer.twoQbRanking,
+        currentPick
+      ),
       getDifferenceDisplayColor(rankDiff),
       getDifferenceDisplayColor(adpDiff),
     ]);

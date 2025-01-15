@@ -32,7 +32,12 @@ export async function DifferentMarketRankings(
     const marketRankings = await getPlayerRankings(selectedMarket);
     const draftedPlayers = await getDraftedPlayers(draftId);
 
-    console.log(chalk.yellow(`\n ${selectedMarketName} \n`));
+    console.log(
+      chalk.yellow(
+        `\n ${selectedMarketName} - Current Draft Pick #${draftedPlayers.length +
+          1}\n`
+      )
+    );
     console.log(
       BuildDraftRankingsTable(
         marketRankings,

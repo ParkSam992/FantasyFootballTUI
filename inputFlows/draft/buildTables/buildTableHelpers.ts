@@ -18,10 +18,19 @@ export const addRanksToPlayers = (
     }));
 };
 
-export const getPlayerString = (player: any, showOneQBRanking) =>
-  `${player.rank} | ${player.firstName} ${player.lastName} | ${Number(
-    showOneQBRanking ? player.oneQbRanking : player.twoQbRanking
-  ).toFixed(1)}`;
+export const getPlayerString = (
+  player: any,
+  showOneQBRanking: boolean,
+  currentPick: number
+) => {
+  const rank = getRankDisplayColor(player.rank, currentPick);
+  const adp = getRankDisplayColor(
+    showOneQBRanking ? player.oneQbRanking : player.twoQbRanking,
+    currentPick
+  );
+
+  return `${rank} | ${player.firstName} ${player.lastName} | ${adp}`;
+};
 
 export const getTopPlayers = (
   rankings: Player[],
@@ -55,4 +64,35 @@ export const getDifferenceDisplayColor = (diff: number) => {
     case diff <= -5:
       return chalk.redBright(diff.toFixed(1));
   }
+};
+
+// TODO: Adjust the range of these colors
+export const getRankDisplayColor = (
+  playerRank: number,
+  currentPick: number
+) => {
+  playerRank = Number(playerRank);
+  let rank;
+  switch (true) {
+    case playerRank <= currentPick - 10: // <= 40
+      rank = chalk.green(playerRank.toFixed(1));
+      break;
+    case playerRank <= currentPick - 5: // <= 43
+      rank = chalk.cyan(playerRank.toFixed(1));
+      break;
+    case playerRank > currentPick - 2 && playerRank < currentPick + 2: // 43 < x < 47
+      rank = playerRank.toFixed(1);
+      break;
+    case playerRank < currentPick + 5: // < 5
+      rank = chalk.yellow(playerRank.toFixed(1));
+      break;
+    case playerRank >= currentPick + 5: // >= 50
+      rank = chalk.red(playerRank.toFixed(1));
+      break;
+    default:
+      // should never hit this
+      rank = chalk.magenta(playerRank.toFixed(1));
+      break;
+  }
+  return rank;
 };

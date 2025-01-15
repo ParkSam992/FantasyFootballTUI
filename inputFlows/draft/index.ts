@@ -6,6 +6,7 @@ import { BuildDraftRankingsTable } from "./buildTables/buildSleeperDraftRankings
 import { dynastyOrRedraft, midDraftOptions, oneQbDraft } from "./draftPrompts";
 import { CompareMarket } from "./compareMarket";
 import { DifferentMarketRankings } from "./differentMarketRankings";
+import chalk from "chalk";
 
 export async function Draft() {
   console.log("Beginning Draft");
@@ -41,6 +42,13 @@ export async function Draft() {
       sleeperRankings,
       draftedPlayers,
       isOneQBDraft
+    );
+
+    console.log(
+      chalk.yellow.bold(
+        `\n Sleeper Rankings - Current Draft Pick #${draftedPlayers.length +
+          1}\n`
+      )
     );
     console.log(table.toString());
 

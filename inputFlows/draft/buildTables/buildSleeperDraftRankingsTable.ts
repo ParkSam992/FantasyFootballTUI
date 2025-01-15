@@ -1,4 +1,5 @@
 const Table = require("cli-table3");
+import chalk from "chalk";
 import { Player } from "../../../types/player";
 import {
   addRanksToPlayers,
@@ -26,6 +27,7 @@ export const BuildDraftRankingsTable = (
   const rankedPlayers = addRanksToPlayers(rankings, isOneQBDraft);
 
   // TODO: draftedPlayers.length gives me what pick is next (think about this with keepers, idk how that works)
+  const currentPick = draftedPlayers.length + 1;
 
   const topQuarterbacks = getTopPlayers(
     rankedPlayers,
@@ -54,10 +56,10 @@ export const BuildDraftRankingsTable = (
 
   for (let i = 0; i < 5; i++) {
     table.push([
-      getPlayerString(topQuarterbacks[i], isOneQBDraft),
-      getPlayerString(topWideRecievers[i], isOneQBDraft),
-      getPlayerString(topRunningBacks[i], isOneQBDraft),
-      getPlayerString(topTightEnds[i], isOneQBDraft),
+      getPlayerString(topQuarterbacks[i], isOneQBDraft, currentPick),
+      getPlayerString(topWideRecievers[i], isOneQBDraft, currentPick),
+      getPlayerString(topRunningBacks[i], isOneQBDraft, currentPick),
+      getPlayerString(topTightEnds[i], isOneQBDraft, currentPick),
     ]);
   }
 

@@ -13,7 +13,7 @@ export async function PotentialKeepers(leagueInfo: League) {
   } = await GetTeamPlayerRankingsPrompt(leagueInfo);
 
   console.log(
-    chalk.red.underline(
+    chalk.red.bold(
       `\n ${
         showOneQBRanking ? "One Quaterback" : "Superflex"
       } ${marketLabel} \n`
