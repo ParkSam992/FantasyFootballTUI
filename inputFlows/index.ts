@@ -11,11 +11,11 @@ import { RefreshPlayerRankings } from "./refreshPlayerRankings";
 export async function FantasyFootballTUI() {
   let direction = "BEGIN";
 
-  const leagueInfo = await CollectLeagueInfo();
+  const league = await CollectLeagueInfo();
   // TODO: If info is bad, re-collect, or exit
 
   while (direction != "EXIT") {
-    console.log("\n" + chalk.blue(leagueInfo?.name ?? "" + leagueInfo?.season));
+    console.log("\n" + chalk.blue(league?.name ?? "" + league?.season));
 
     direction = await getSelectInput(
       "What would you like to do?",
@@ -31,13 +31,13 @@ export async function FantasyFootballTUI() {
 
     switch (direction) {
       case "BEGIN_DRAFT":
-        await Draft();
+        await Draft(league);
         break;
       case "TRADE_CALCULATOR":
         await TradeCalculator();
         break;
       case "UTILITIES":
-        await Utilities(leagueInfo);
+        await Utilities(league);
         break;
       case "REFRESH_PLAYER_RANKINGS":
         await RefreshPlayerRankings();

@@ -1,3 +1,20 @@
+export const getDraftPrompt = (leagueName: string, draftId: string) => {
+  return [
+    {
+      label: `${leagueName}: ${draftId}`,
+      value: draftId,
+    },
+    {
+      label: "Enter Different Draft",
+      value: "DIFFERENT_DRAFT",
+    },
+    {
+      label: "Back",
+      value: "BACK",
+    },
+  ];
+};
+
 export const dynastyOrRedraft = [
   {
     label: "This is a Dynasty League",

@@ -8,7 +8,7 @@ import { getDraftedPlayers } from "../../fantasyFootballApi/getDraftedPlayers";
 
 export async function DifferentMarketRankings(
   draftId: string,
-  leagueType: string,
+  isDynasty: boolean,
   isOneQBDraft: boolean
 ) {
   const markets = await getMarkets();
@@ -22,7 +22,7 @@ export async function DifferentMarketRankings(
           (m) =>
             m.value != "STD_SLEEPER" &&
             m.value != "DYN_SLEEPER" &&
-            m.value.startsWith(leagueType)
+            m.value.startsWith(isDynasty ? "DYN" : "STD")
         )
       );
     }

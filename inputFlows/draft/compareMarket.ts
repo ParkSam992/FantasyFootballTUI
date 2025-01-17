@@ -11,7 +11,7 @@ import { getMultiSelectChoices } from "../../prompts/getMultiSelectChoices";
 export async function CompareMarket(
   sleeperRankings: Player[],
   draftId: string,
-  leagueType: string,
+  isDynasty: boolean,
   isOneQBDraft: boolean
 ) {
   const markets = await getMarkets();
@@ -25,7 +25,7 @@ export async function CompareMarket(
           (m) =>
             m.value != "STD_SLEEPER" &&
             m.value != "DYN_SLEEPER" &&
-            m.value.startsWith(leagueType)
+            m.value.startsWith(isDynasty ? "DYN" : "STD")
         )
       );
     }

@@ -20,6 +20,13 @@ export async function CollectLeagueInfo(): Promise<League> {
     return { leagueId: "Unknown League" } as League;
   }
 
+  // TODO: I may or may not want this info, tbd
+  // 0 is Redraft, 1 is Keeper, 2 is Dynasty
+
+  // const isDynasty = selectedLeague?.settings.type === 2;
+  // const isOneQb =
+  //   selectedLeague.roster_positions.filter((pos) => pos === "QB").length === 1;
+
   return selectedLeague;
 }
 
