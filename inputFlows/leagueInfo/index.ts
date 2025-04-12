@@ -5,9 +5,10 @@ import { getTextInput } from "../../prompts/getTextInput";
 import { League } from "../../types/league";
 
 export async function CollectLeagueInfo(): Promise<League> {
-  var username = await getTextInput("Enter Sleeper Username");
+  // var username = await getTextInput("Enter Sleeper Username");
+  var username = "SamPark99";
 
-  const leagues = await getUserLeagues(username, "nfl", "2024");
+  const leagues = await getUserLeagues(username, "nfl", "2025");
 
   const leagueId = await getSelectInput(
     "Which league are you interested in?",

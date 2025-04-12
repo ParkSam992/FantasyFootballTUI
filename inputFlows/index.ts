@@ -7,6 +7,7 @@ import { CollectLeagueInfo } from "./leagueInfo";
 import { TradeCalculator } from "./tradeCalculator";
 import { Draft } from "./draft";
 import { RefreshPlayerRankings } from "./refreshPlayerRankings";
+import { PlayerSearch } from "./playerSearch";
 
 export async function FantasyFootballTUI() {
   let direction = "BEGIN";
@@ -35,6 +36,9 @@ export async function FantasyFootballTUI() {
         break;
       case "TRADE_CALCULATOR":
         await TradeCalculator();
+        break;
+      case "PLAYER_SEARCH":
+        await PlayerSearch();
         break;
       case "UTILITIES":
         await Utilities(league);

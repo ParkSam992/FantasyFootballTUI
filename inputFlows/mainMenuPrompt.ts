@@ -8,6 +8,10 @@ export const mainMenuPrompt = [
     value: "TRADE_CALCULATOR",
   },
   {
+    label: "Player Search",
+    value: "PLAYER_SEARCH",
+  },
+  {
     label: "Utilities",
     value: "UTILITIES",
   },

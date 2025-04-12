@@ -20,6 +20,8 @@ export async function Draft(league: League) {
 
   // TODO: Can I use info gathered about the league to determine below things?
 
+  // TODO: I might want to consider not showing ADP, but showing average rankings
+
   let draftId = await getSelectInput(
     "Use Selected League Draft?",
     getDraftPrompt(league.name, league.draft_id)
