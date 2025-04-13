@@ -74,19 +74,20 @@ export const getRankDisplayColor = (
   playerRank = Number(playerRank);
   let rank;
   switch (true) {
-    case playerRank <= currentPick - 10: // <= 40
+    // assume pick 22
+    case playerRank - currentPick < -5: // < 17
       rank = chalk.green(playerRank.toFixed(1));
       break;
-    case playerRank <= currentPick - 5: // <= 43
+    case playerRank - currentPick >= -5 && playerRank - currentPick < -1: // 17 - 20
       rank = chalk.cyan(playerRank.toFixed(1));
       break;
-    case playerRank > currentPick - 2 && playerRank < currentPick + 2: // 43 < x < 47
+    case playerRank - currentPick <= 1 && playerRank - currentPick >= -1: // 21 - 23
       rank = playerRank.toFixed(1);
       break;
-    case playerRank < currentPick + 5: // < 5
+    case playerRank - currentPick <= 5 && playerRank - currentPick > 1: // 24 - 27
       rank = chalk.yellow(playerRank.toFixed(1));
       break;
-    case playerRank >= currentPick + 5: // >= 50
+    case playerRank - currentPick > 5: // >= 50
       rank = chalk.red(playerRank.toFixed(1));
       break;
     default:
