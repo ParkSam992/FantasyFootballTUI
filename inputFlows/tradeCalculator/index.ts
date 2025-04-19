@@ -18,6 +18,10 @@ export async function TradeCalculator() {
     tradeCalculatorType
   );
 
+  if (leagueType === "BACK") {
+    return;
+  }
+
   const tradeData = await getPlayerTradeValue();
 
   let teams: Record<string, TradePlayer[]> = {
