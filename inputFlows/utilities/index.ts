@@ -2,6 +2,7 @@ import { getSelectInput } from "../../prompts/getSelectInput";
 import { League } from "../../types/league";
 import { PlayerRankings } from "./playerRankings";
 import { PotentialKeepers } from "./potentialKeepers";
+import { KeepersPerTeam } from "./keepersPerTeam";
 import { utilityPrompt } from "./utilityPrompts";
 
 export async function Utilities(leagueInfo: League) {
@@ -18,6 +19,9 @@ export async function Utilities(leagueInfo: League) {
     switch (utilityFunction) {
       case "POTENTIAL_KEEPERS":
         await PotentialKeepers(leagueInfo);
+        break;
+      case "KEEPERS_PER_TEAM":
+        await KeepersPerTeam(leagueInfo);
         break;
       case "PLAYER_RANKINGS":
         await PlayerRankings(leagueInfo);

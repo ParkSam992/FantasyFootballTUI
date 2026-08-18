@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import { Player } from "../../../types/player";
+import { DraftedPlayer } from "../../../types/draftedPlayer";
 import {
   addRanksToPlayers,
   getDifferenceDisplayColor,
@@ -12,7 +13,7 @@ const Table = require("cli-table3");
 export const BuildCompareMarketTable = (
   sleeperRankings: Player[],
   marketRankings: Player[],
-  playersDrafted: Player[],
+  playersDrafted: DraftedPlayer[],
   position: string,
   isOneQBDraft: boolean
 ): any => {

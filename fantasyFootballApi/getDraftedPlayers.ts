@@ -1,11 +1,16 @@
 import axios from "axios";
 const https = require("https");
 import { FantasyFootballUrl } from ".";
-import { Player } from "../types/player";
+import { DraftedPlayer } from "../types/draftedPlayer";
 import chalk from "chalk";
 
-export async function getDraftedPlayers(draftId: string): Promise<Player[]> {
-  const route = `/getDraftedPlayers/${draftId}`;
+export async function getDraftedPlayers(
+  draftId: string,
+  leagueId?: string
+): Promise<DraftedPlayer[]> {
+  const route = `/getDraftedPlayers/${draftId}${
+    leagueId ? `?leagueId=${leagueId}` : ""
+  }`;
   const url = FantasyFootballUrl + route;
 
   const agent = new https.Agent({

@@ -8,7 +8,7 @@ export async function CollectLeagueInfo(): Promise<League> {
   // var username = await getTextInput("Enter Sleeper Username");
   var username = "SamPark99";
 
-  const leagues = await getUserLeagues(username, "nfl", "2025");
+  const leagues = await getUserLeagues(username, "nfl", "2026");
 
   const leagueId = await getSelectInput(
     "Which league are you interested in?",

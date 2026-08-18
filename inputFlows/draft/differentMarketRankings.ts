@@ -8,6 +8,7 @@ import { getDraftedPlayers } from "../../fantasyFootballApi/getDraftedPlayers";
 
 export async function DifferentMarketRankings(
   draftId: string,
+  leagueId: string,
   isDynasty: boolean,
   isOneQBDraft: boolean
 ) {
@@ -22,7 +23,7 @@ export async function DifferentMarketRankings(
           (m) =>
             m.value != "STD_SLEEPER" &&
             m.value != "DYN_SLEEPER" &&
-            m.value.startsWith(isDynasty ? "DYN" : "STD")
+            !m.value.startsWith(isDynasty ? "STD" : "DYN")
         )
       );
     }
@@ -30,12 +31,12 @@ export async function DifferentMarketRankings(
     const selectedMarketName = markets.find((m) => m.value === selectedMarket)
       ?.label;
     const marketRankings = await getPlayerRankings(selectedMarket);
-    const draftedPlayers = await getDraftedPlayers(draftId);
+    const draftedPlayers = await getDraftedPlayers(draftId, leagueId);
+    const currentPick = draftedPlayers.length + 1;
 
     console.log(
       chalk.yellow(
-        `\n ${selectedMarketName} - Current Draft Pick #${draftedPlayers.length +
-          1}\n`
+        `\n ${selectedMarketName} - Current Draft Pick #${currentPick}\n`
       )
     );
     console.log(

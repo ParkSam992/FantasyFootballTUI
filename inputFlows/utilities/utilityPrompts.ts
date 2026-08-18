@@ -4,6 +4,10 @@ export const utilityPrompt = [
     value: "POTENTIAL_KEEPERS",
   },
   {
+    label: "Keepers Per Team",
+    value: "KEEPERS_PER_TEAM",
+  },
+  {
     label: "Player Rankings",
     value: "PLAYER_RANKINGS",
   },

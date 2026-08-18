@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import { Player } from "../../../types/player";
+import { DraftedPlayer } from "../../../types/draftedPlayer";
 
 export const addRanksToPlayers = (
   players: Player[],
@@ -34,7 +35,7 @@ export const getPlayerString = (
 
 export const getTopPlayers = (
   rankings: Player[],
-  playersAlreadyDrafted: Player[],
+  playersAlreadyDrafted: DraftedPlayer[],
   position: string,
   showOneQBRanking: boolean
 ): Player[] =>

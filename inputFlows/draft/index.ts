@@ -40,12 +40,12 @@ export async function Draft(league: League) {
   const isOneQb = draftInfo.isOneQb;
 
   const sleeperRankings = await getPlayerRankings(
-    isDynasty ? "STD_SLEEPER" : "DYN_SLEEPER"
+    isDynasty ? "DYN_SLEEPER" : "STD_SLEEPER"
   );
 
   let draftOptions = "BEGIN_DRAFT";
   while (draftOptions != "DRAFT_ENDED") {
-    let draftedPlayers = await getDraftedPlayers(draftId);
+    let draftedPlayers = await getDraftedPlayers(draftId, league.leagueId);
 
     const table = BuildDraftRankingsTable(
       sleeperRankings,
@@ -53,10 +53,11 @@ export async function Draft(league: League) {
       isOneQb
     );
 
+    const currentPick = draftedPlayers.length + 1;
+
     console.log(
       chalk.yellow.bold(
-        `\n Sleeper Rankings - Current Draft Pick #${draftedPlayers.length +
-          1}\n`
+        `\n Sleeper Rankings - Current Draft Pick #${currentPick}\n`
       )
     );
     console.log(table.toString());
@@ -71,10 +72,21 @@ export async function Draft(league: League) {
         // always refreshes at beginning of loop
         break;
       case "DIFFERENT_MARKET":
-        await DifferentMarketRankings(draftId, isDynasty, isOneQb);
+        await DifferentMarketRankings(
+          draftId,
+          league.leagueId,
+          isDynasty,
+          isOneQb
+        );
         break;
       case "COMPARE_MARKET":
-        await CompareMarket(sleeperRankings, draftId, isDynasty, isOneQb);
+        await CompareMarket(
+          sleeperRankings,
+          draftId,
+          league.leagueId,
+          isDynasty,
+          isOneQb
+        );
         break;
       case "BACK":
         return;
